@@ -9,7 +9,7 @@
 <meta property="og:description" content="11 preguntas. 3 minutos. Al final ves tu lugar en el ranking.">
 <meta name="theme-color" content="#000000">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
 <style>
 *{box-sizing:border-box}
 html,body{margin:0;background:#000;color:#fff;font-family:Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
@@ -181,13 +181,14 @@ var S = { step:'intro', qi:0, picked:null, score:0, answers:[], oi:0, open:['','
 var app = document.getElementById('app');
 var online = !!(SUPABASE_URL && SUPABASE_KEY);
 
+function tfetch(u,o){var c=new AbortController();var t=setTimeout(function(){c.abort();},8000);o=o||{};o.signal=c.signal;return fetch(u,o).then(function(r){clearTimeout(t);return r;},function(e){clearTimeout(t);throw e;});}
 function esc(t){return String(t).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
 function icon(d,color){return '<svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="'+color+'" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="'+d+'"></path></svg>';}
 function headers(){var h={'apikey':SUPABASE_KEY,'Content-Type':'application/json'}; if(SUPABASE_KEY.indexOf('eyJ')===0) h['Authorization']='Bearer '+SUPABASE_KEY; return h;}
 
 function loadRows(){
   if(!online){ try{ S.rows = JSON.parse(localStorage.getItem('quizRaulRows')||'[]'); }catch(e){ S.rows=[]; } return Promise.resolve(); }
-  return fetch(SUPABASE_URL+'/rest/v1/'+VIEW+'?select=voto_personaje&limit=5000',{headers:headers()})
+  return tfetch(SUPABASE_URL+'/rest/v1/'+VIEW+'?select=voto_personaje&limit=5000',{headers:headers()})
     .then(function(r){return r.ok?r.json():[];}).then(function(rows){S.rows=rows;}).catch(function(){S.rows=S.rows||[];});
 }
 function save(){
@@ -197,7 +198,7 @@ function save(){
   if(!online){ try{ var rows=JSON.parse(localStorage.getItem('quizRaulRows')||'[]'); rows.push({nombre:row.nombre,puntaje:row.puntaje,voto_personaje:row.voto_personaje,created_at:new Date().toISOString(),me:true}); localStorage.setItem('quizRaulRows',JSON.stringify(rows)); }catch(e){} S.saved=true; return loadRows(); }
   S.sending=true;
   var h=headers(); h['Prefer']='return=minimal';
-  return fetch(SUPABASE_URL+'/rest/v1/'+TABLE,{method:'POST',headers:h,body:JSON.stringify(row)})
+  return tfetch(SUPABASE_URL+'/rest/v1/'+TABLE,{method:'POST',headers:h,body:JSON.stringify(row)})
     .then(function(){S.saved=true;S.sending=false;}).catch(function(){S.sending=false;}).then(loadRows);
 }
 
