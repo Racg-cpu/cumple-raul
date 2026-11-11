@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>¿Qué tanto conoces a Raúl?</title>
-<meta name="description" content="12 preguntas. 3 minutos. A ver qué tanto sabes de Raúl.">
+<meta name="description" content="11 preguntas. 3 minutos. A ver qué tanto sabes de Raúl.">
 <meta property="og:title" content="¿Qué tanto conoces a Raúl?">
-<meta property="og:description" content="12 preguntas. 3 minutos. Al final ves tu lugar en el ranking.">
+<meta property="og:description" content="11 preguntas. 3 minutos. Al final ves tu lugar en el ranking.">
 <meta name="theme-color" content="#000000">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -161,11 +161,6 @@ var QUESTIONS = [
 ['Mazatlán',I.wave,'¡Eso! Playa y sin salir de Sinaloa.'],
 ['Miami',I.palm,'Suena bien, pero no.'],
 ['Dubái',I.tower,'¿Me ves cara de árabe?']]},
-{ text:'¿Qué está creando Raúl ahorita?', a:0, opts:[
-['Un juego en Roblox',I.pad,'¡Sí! Está haciendo su propio juego.'],
-['Un podcast',I.mic,'Todavía no. Quién sabe.'],
-['Una marca de gorras',I.cap,'No, gorras no.'],
-['Un food truck',I.truck,'Nop, eso no.']]},
 { text:'Si Raúl fuera un personaje, ¿quién sería?', poll:true, a:-1, opts:[
 ['Tony Stark',I.bolt],['Tommy Shelby',I.glass],['Bob Esponja',I.bubbles],['El Chavo del 8',I.smile]]},
 { text:'¿Cómo sería el día libre perfecto de Raúl?', a:3, opts:[
@@ -211,7 +206,7 @@ function render(){
   if(S.step==='intro'){
     h+='<section class="screen"><span class="pill">Cumple de Raúl · 15 nov</span>'+
     '<h1>¿Qué tanto conoces a Raúl?</h1>'+
-    '<p class="muted" style="margin:18px 0 0;font-size:17px;line-height:1.45">12 preguntas. 3 minutos. El que más sepa gana.</p>'+
+    '<p class="muted" style="margin:18px 0 0;font-size:17px;line-height:1.45">11 preguntas. 3 minutos. El que más sepa gana.</p>'+
     '<div class="bottom"><label for="nombre" class="muted" style="font-size:13px">Tu nombre</label>'+
     '<input id="nombre" type="text" maxlength="40" autocomplete="given-name" placeholder="Escribe tu nombre" value="'+esc(S.name)+'">'+
     '<button class="btn '+(S.name.trim()?'btn-main':'btn-off')+'" id="go">Empezar</button></div></section>';
