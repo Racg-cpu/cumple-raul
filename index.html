@@ -1,0 +1,303 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>¿Qué tanto conoces a Raúl?</title>
+<meta name="description" content="12 preguntas. 3 minutos. A ver qué tanto sabes de Raúl.">
+<meta property="og:title" content="¿Qué tanto conoces a Raúl?">
+<meta property="og:description" content="12 preguntas. 3 minutos. Al final ves tu lugar en el ranking.">
+<meta name="theme-color" content="#000000">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;background:#000;color:#fff;font-family:Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+body{min-height:100dvh;overflow-x:hidden}
+.glow{position:fixed;border-radius:999px;filter:blur(30px);pointer-events:none;z-index:0}
+.g1{width:440px;height:440px;left:-150px;top:-110px;background:radial-gradient(circle,rgba(255,138,61,.5) 0%,rgba(255,138,61,0) 70%)}
+.g2{width:400px;height:400px;right:-170px;top:260px;background:radial-gradient(circle,rgba(124,92,255,.45) 0%,rgba(124,92,255,0) 70%)}
+#app{position:relative;z-index:1;max-width:440px;margin:0 auto;min-height:100dvh;padding:26px 22px calc(26px + env(safe-area-inset-bottom));display:flex;flex-direction:column}
+.screen{flex:1;display:flex;flex-direction:column;animation:in .35s ease}
+@keyframes in{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.display{font-family:'Inter Tight',sans-serif;letter-spacing:-.045em}
+.pill{align-self:flex-start;font-size:13px;font-weight:500;padding:8px 12px;border-radius:999px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14)}
+h1{margin:56px 0 0;font-family:'Inter Tight',sans-serif;font-weight:800;font-size:clamp(48px,15vw,64px);line-height:.92;letter-spacing:-.055em}
+h2{margin:32px 0 0;font-family:'Inter Tight',sans-serif;font-weight:700;font-size:clamp(28px,8.5vw,34px);line-height:1.05;letter-spacing:-.04em}
+.muted{color:rgba(255,255,255,.68)}
+.bottom{margin-top:auto;padding-top:22px;display:flex;flex-direction:column;gap:12px}
+input,textarea{width:100%;border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.08);color:#fff;font-family:Inter,sans-serif;font-size:16px;outline:none}
+input{height:56px;border-radius:999px;padding:0 22px}
+textarea{height:170px;border-radius:24px;padding:18px 20px;resize:none;line-height:1.45;margin-top:22px}
+input:focus,textarea:focus{border-color:#D4FF3F}
+input::placeholder,textarea::placeholder{color:rgba(255,255,255,.5)}
+.btn{height:58px;border-radius:999px;border:0;font-family:'Inter Tight',sans-serif;font-weight:700;font-size:18px;cursor:pointer;transition:transform .1s,opacity .2s}
+.btn:active{transform:scale(.98)}
+.btn-main{background:#D4FF3F;color:#000}
+.btn-light{background:#fff;color:#000}
+.btn-off{background:rgba(255,255,255,.12);color:rgba(255,255,255,.5);cursor:default}
+.btn-ghost{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.22);color:#fff;font-family:Inter,sans-serif;font-weight:500;font-size:15px}
+.top{display:flex;justify-content:space-between;align-items:center;font-size:13px;color:rgba(255,255,255,.7)}
+.bar{margin-top:10px;height:6px;border-radius:999px;background:rgba(255,255,255,.12);overflow:hidden}
+.bar>div{height:6px;border-radius:999px;background:#D4FF3F;transition:width .4s ease}
+.opts{margin-top:22px;display:flex;flex-direction:column;gap:10px}
+.opt{position:relative;overflow:hidden;min-height:60px;display:flex;align-items:center;gap:14px;padding:0 16px;border-radius:20px;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.07);color:#fff;font-family:Inter,sans-serif;font-size:16px;font-weight:500;text-align:left;cursor:pointer;transition:background .25s,border-color .25s,color .25s}
+.opt .fill{position:absolute;left:0;top:0;bottom:0;width:0;transition:width .7s cubic-bezier(.2,.8,.2,1)}
+.opt .ic{position:relative;width:36px;height:36px;flex-shrink:0;border-radius:12px;background:rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center}
+.opt .lb{position:relative;flex:1}
+.opt .pc{position:relative;font-family:'Inter Tight',sans-serif;font-size:17px;font-weight:700}
+.opt.ok{background:#D4FF3F;border-color:#D4FF3F;color:#000}
+.opt.ok .ic{background:rgba(0,0,0,.12)}
+.opt.bad{background:rgba(255,77,77,.18);border-color:#FF6B6B}
+.opt.dim{color:rgba(255,255,255,.45)}
+.opt.dim .ic{background:rgba(255,255,255,.05)}
+.opt.mine{border-color:#D4FF3F}
+.react{margin-top:18px;animation:in .3s ease}
+.react p{margin:0}
+.react .big{font-family:'Inter Tight',sans-serif;font-size:22px;font-weight:700;letter-spacing:-.02em;line-height:1.15}
+.react .small{margin-top:4px;font-size:14px;color:rgba(255,255,255,.65)}
+.score{display:flex;align-items:flex-end;gap:8px;margin-top:6px}
+.score .n{font-family:'Inter Tight',sans-serif;font-weight:800;font-size:150px;line-height:.82;letter-spacing:-.07em}
+.score .d{font-family:'Inter Tight',sans-serif;font-weight:700;font-size:34px;color:rgba(255,255,255,.55);padding-bottom:8px}
+.card{margin-top:22px;padding:6px 18px;border-radius:24px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12)}
+.card .t{display:block;font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.6);padding:12px 0 4px}
+.row{display:flex;align-items:center;gap:12px;padding:11px 0;border-top:1px solid rgba(255,255,255,.08)}
+.row .p{width:22px;font-size:14px;color:rgba(255,255,255,.6)}
+.row .nm{flex:1;font-size:15px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.row .sc{font-family:'Inter Tight',sans-serif;font-size:17px;font-weight:700}
+.row.me .nm{color:#D4FF3F;font-weight:700}
+.grid2{display:grid;grid-template-columns:2fr 1fr;gap:10px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+</style>
+</head>
+<body>
+<div class="glow g1" aria-hidden="true"></div>
+<div class="glow g2" aria-hidden="true"></div>
+<main id="app"></main>
+<script>
+/* ====== CONFIGURACIÓN ======
+   Pega aquí la URL y la "anon public key" de tu proyecto de Supabase
+   (Project Settings > API). Si las dejas vacías, el quiz funciona igual
+   pero cada quien solo ve su propio resultado (sin ranking compartido). */
+var SUPABASE_URL = 'https://jhzmopnzwfpicbvnuxcz.supabase.co';
+var SUPABASE_KEY = 'sb_publishable_2FEI-vMCvvHdTra2au-Uhg_IfzEwTcj';
+var TABLE = 'quiz_cumple';
+var VIEW = 'quiz_cumple_votos';
+
+var I = {
+pen:'M4 20l4-1 11-11-3-3L5 16l-1 4z M14 6l3 3',
+target:'M7 12a5 5 0 1 0 10 0a5 5 0 1 0-10 0 M12 3v4 M12 17v4 M3 12h4 M17 12h4',
+ball:'M3 12a9 9 0 1 0 18 0a9 9 0 1 0-18 0 M12 7.5l4 3-1.5 4.5h-5L8 10.5z',
+film:'M4 9h16v11H4z M4 9l2-5h14l-2 5 M10 4l-2 5 M16 4l-2 5',
+drum:'M4 9a8 3 0 1 0 16 0a8 3 0 1 0-16 0 M4 9v6a8 3 0 0 0 16 0V9 M3 3l6 5 M21 3l-6 5',
+speaker:'M4 10h3l5-4v12l-5-4H4z M16 9a4 4 0 0 1 0 6 M19 6a8 8 0 0 1 0 12',
+guitar:'M20 2l2 2-7 7 M14 10a3 3 0 0 0-4-1 4 4 0 1 0 4 5 3 3 0 0 0 0-4z M8 16h.01',
+maracas:'M5 7a3 3 0 1 0 6 0a3 3 0 1 0-6 0 M8 10l-3 11 M13 7a3 3 0 1 0 6 0a3 3 0 1 0-6 0 M16 10l3 11',
+star:'M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.2 9.5l6.1-.9z',
+reg:'M3 12a9 9 0 1 0 18 0a9 9 0 1 0-18 0 M10 16V8h3a2 2 0 0 1 0 4h-3 M13 12l2 4',
+bird:'M3 15c0-5 4-9 9-9 3 0 6 2 9 4l-6 1c-1 4-4 7-9 7 M13 9h.01',
+mic:'M9 4a3 3 0 0 1 6 0v6a3 3 0 0 1-6 0z M5 10a7 7 0 0 0 14 0 M12 17v4',
+car:'M3 16v-4l2-5h14l2 5v4z M5 12h14 M6 16v2 M18 16v2',
+pickup:'M2 15V8h9v7 M11 10h5l4 4v1H2 M4.5 17a1.5 1.5 0 1 0 3 0a1.5 1.5 0 1 0-3 0 M15.5 17a1.5 1.5 0 1 0 3 0a1.5 1.5 0 1 0-3 0',
+moto:'M2 16a3 3 0 1 0 6 0a3 3 0 1 0-6 0 M16 16a3 3 0 1 0 6 0a3 3 0 1 0-6 0 M5 16l4-6h5l5 6 M14 10l-1-3h3',
+bottle:'M8 9h8v11H8z M10 9V6h4v3 M11 4h2',
+drop:'M12 3s6 7 6 11a6 6 0 0 1-12 0c0-4 6-11 6-11z',
+megaphone:'M3 10v4l13 5V5L3 10z M16 9a3 3 0 0 1 0 6 M6 14l1 5h3l-1-4',
+shoe:'M3 17v-5l4-1 3-4 3 3 6 2a2 2 0 0 1 2 2v3z M3 17h18',
+sushi:'M4 12a8 8 0 1 0 16 0a8 8 0 1 0-16 0 M9 12a3 3 0 1 0 6 0a3 3 0 1 0-6 0',
+taco:'M3 17a9 9 0 0 1 18 0z M8 13l1.5 1.5 M12 11v2.5 M16 13l-1.5 1.5',
+pizza:'M12 3l9 17H3z M5 16c4-1 10-1 14 0 M11 12h.01 M13 15h.01',
+burger:'M4 10a8 5 0 0 1 16 0z M3 13h18 M4 16h16v1a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3z',
+mountain:'M3 20l6-10 4 6 3-4 5 8z',
+wave:'M3 16c2-2 4-2 6 0s4 2 6 0 4-2 6 0 M3 20c2-2 4-2 6 0s4 2 6 0 4-2 6 0 M8 11a4 4 0 0 1 8 0',
+palm:'M12 21V10 M12 10c-2-3-5-4-8-3 M12 10c2-3 5-4 8-3 M12 10c-1-3-1-5 0-7',
+tower:'M12 2v4 M10 6h4l1 15H9z M7 21h10',
+pad:'M6 9h12a3 3 0 0 1 3 3v3a3 3 0 0 1-5 2l-2-2h-4l-2 2a3 3 0 0 1-5-2v-3a3 3 0 0 1 3-3z M8 11v4 M6 13h4 M16 12h.01 M18 14h.01',
+cap:'M3 15a9 7 0 0 1 18 0z M3 15h12l6 2',
+truck:'M2 6h12v10H2z M14 10h4l3 3v3h-7 M4.5 18a1.5 1.5 0 1 0 3 0a1.5 1.5 0 1 0-3 0 M15.5 18a1.5 1.5 0 1 0 3 0a1.5 1.5 0 1 0-3 0',
+bolt:'M13 2L4 14h7l-1 8 9-12h-7z',
+glass:'M6 4h12l-1.5 16h-9z M7 10h10',
+bubbles:'M4 15a3 3 0 1 0 6 0a3 3 0 1 0-6 0 M12 8a4 4 0 1 0 8 0a4 4 0 1 0-8 0 M13 18a2 2 0 1 0 4 0a2 2 0 1 0-4 0',
+smile:'M3 12a9 9 0 1 0 18 0a9 9 0 1 0-18 0 M8 14s1.5 2 4 2 4-2 4-2 M9 9h.01 M15 9h.01',
+sun:'M8 12a4 4 0 1 0 8 0a4 4 0 1 0-8 0 M12 2v2 M12 20v2 M2 12h2 M20 12h2 M5 5l1.5 1.5 M17.5 17.5L19 19 M5 19l1.5-1.5 M17.5 6.5L19 5',
+dumbbell:'M6 7v10 M18 7v10 M3 10v4 M21 10v4 M6 12h12',
+moon:'M20 14A8 8 0 1 1 10 4a6 6 0 0 0 10 10z',
+compass:'M3 12a9 9 0 1 0 18 0a9 9 0 1 0-18 0 M15.5 8.5l-2 5-5 2 2-5z'
+};
+
+var QUESTIONS = [
+{ text:'¿Cuál es el hobby favorito de Raúl?', a:1, opts:[
+['Diseñar',I.pen,'Algo le sabe, pero no es su hobby favorito.'],
+['Airsoft',I.target,'¡Eso! Airsoft todo el día.'],
+['Fútbol',I.ball,'¿Cuándo has visto a Raúl jugando fútbol?'],
+['Ver películas',I.film,'Le gustan, pero no tanto.']]},
+{ text:'¿Qué música trae Raúl casi siempre en los audífonos?', a:2, opts:[
+['Banda',I.drum,'Cerca, pero no.'],
+['Reggaetón',I.speaker,'Nop. Ese no es su estilo.'],
+['Corridos',I.guitar,'¡Exacto! Puros corridos.'],
+['Cumbia',I.maracas,'¿En serio? ¿Cumbia?']]},
+{ text:'¿Cuál es el grupo favorito de Raúl?', a:0, opts:[
+['Edición Especial',I.star,'¡Ese mero!'],
+['Grupo Marca Registrada',I.reg,'Buen grupo, pero no es el favorito.'],
+['Los Tucanes de Tijuana',I.bird,'Clásicos, pero no.'],
+['Los Nuevos Rebeldes',I.mic,'Casi, pero no.']]},
+{ text:'Si Raúl se gana un millón de pesos, ¿qué se compra?', a:1, opts:[
+['Un carro',I.car,'Un carro no. Algo más grande.'],
+['Una camioneta',I.pickup,'¡Claro! Camioneta y ya.'],
+['Una moto',I.moto,'¿Raúl en moto? No lo veo.'],
+['Perfumes',I.bottle,'Ya vendió suficientes perfumes.']]},
+{ text:'¿Cuál de estos negocios NO ha tenido Raúl?', a:3, opts:[
+['Venta de perfumes',I.bottle,'Ese sí lo tuvo.'],
+['Lavado y detallado de autos',I.drop,'¿No le miras la finta de limpiaparabrisas?'],
+['Agencia de marketing',I.megaphone,'Esa sí la tiene.'],
+['Venta de tenis',I.shoe,'¡Correcto! Tenis nunca ha vendido. Todavía.']]},
+{ text:'¿Comida favorita de Raúl?', a:0, opts:[
+['Sushi',I.sushi,'¡Obvio! Sushi siempre.'],
+['Tacos',I.taco,'Buenos, pero no ganan.'],
+['Pizza',I.pizza,'No, pizza no.'],
+['Hamburguesa',I.burger,'Nop, esa no.']]},
+{ text:'Si Raúl se pudiera ir a vivir a otra ciudad, ¿cuál sería?', a:1, opts:[
+['Monterrey',I.mountain,'¿Monterrey? Mejor la playa.'],
+['Mazatlán',I.wave,'¡Eso! Playa y sin salir de Sinaloa.'],
+['Miami',I.palm,'Suena bien, pero no.'],
+['Dubái',I.tower,'¿Me ves cara de árabe?']]},
+{ text:'¿Qué está creando Raúl ahorita?', a:0, opts:[
+['Un juego en Roblox',I.pad,'¡Sí! Está haciendo su propio juego.'],
+['Un podcast',I.mic,'Todavía no. Quién sabe.'],
+['Una marca de gorras',I.cap,'No, gorras no.'],
+['Un food truck',I.truck,'Nop, eso no.']]},
+{ text:'Si Raúl fuera un personaje, ¿quién sería?', poll:true, a:-1, opts:[
+['Tony Stark',I.bolt],['Tommy Shelby',I.glass],['Bob Esponja',I.bubbles],['El Chavo del 8',I.smile]]},
+{ text:'¿Cómo sería el día libre perfecto de Raúl?', a:3, opts:[
+['En la playa',I.sun,'Le gusta, pero no es su día perfecto.'],
+['En el gym',I.dumbbell,'Va, pero no es su día perfecto.'],
+['Dormir todo el día',I.moon,'¿Todo el día dormido? Para nada.'],
+['Ruteando en la montaña',I.compass,'¡Eso! Ruteando en la montaña.']]}
+];
+var OPEN = [
+{ text:'¿Cuál es tu frase favorita de Raúl?', hint:'Esa que siempre dice o que te dijo una vez y no se te olvida.', cta:'Siguiente' },
+{ text:'Describe a Raúl en 3 palabras.', hint:'Sin pensarlo mucho.', cta:'Ver mi resultado' }
+];
+var POLL_INDEX = QUESTIONS.findIndex(function(q){return q.poll;});
+var MC_TOTAL = QUESTIONS.filter(function(q){return !q.poll;}).length;
+var TOTAL = QUESTIONS.length + OPEN.length;
+
+var S = { step:'intro', qi:0, picked:null, score:0, answers:[], oi:0, open:['',''], name:'', rows:null, saved:false, sending:false };
+var app = document.getElementById('app');
+var online = !!(SUPABASE_URL && SUPABASE_KEY);
+
+function esc(t){return String(t).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
+function icon(d,color){return '<svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="'+color+'" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="'+d+'"></path></svg>';}
+function headers(){var h={'apikey':SUPABASE_KEY,'Content-Type':'application/json'}; if(SUPABASE_KEY.indexOf('eyJ')===0) h['Authorization']='Bearer '+SUPABASE_KEY; return h;}
+
+function loadRows(){
+  if(!online){ try{ S.rows = JSON.parse(localStorage.getItem('quizRaulRows')||'[]'); }catch(e){ S.rows=[]; } return Promise.resolve(); }
+  return fetch(SUPABASE_URL+'/rest/v1/'+VIEW+'?select=voto_personaje&limit=5000',{headers:headers()})
+    .then(function(r){return r.ok?r.json():[];}).then(function(rows){S.rows=rows;}).catch(function(){S.rows=S.rows||[];});
+}
+function save(){
+  if(S.saved||S.sending) return Promise.resolve();
+  var row = { nombre:(S.name||'Anónimo').slice(0,40), puntaje:S.score, voto_personaje:S.answers[POLL_INDEX], respuestas:S.answers, frase:S.open[0].slice(0,500), tres_palabras:S.open[1].slice(0,200) };
+  try{ localStorage.setItem('quizRaulHecho','1'); }catch(e){}
+  if(!online){ try{ var rows=JSON.parse(localStorage.getItem('quizRaulRows')||'[]'); rows.push({nombre:row.nombre,puntaje:row.puntaje,voto_personaje:row.voto_personaje,created_at:new Date().toISOString(),me:true}); localStorage.setItem('quizRaulRows',JSON.stringify(rows)); }catch(e){} S.saved=true; return loadRows(); }
+  S.sending=true;
+  var h=headers(); h['Prefer']='return=minimal';
+  return fetch(SUPABASE_URL+'/rest/v1/'+TABLE,{method:'POST',headers:h,body:JSON.stringify(row)})
+    .then(function(){S.saved=true;S.sending=false;}).catch(function(){S.sending=false;}).then(loadRows);
+}
+
+function render(){
+  var h='';
+  if(S.step==='intro'){
+    h+='<section class="screen"><span class="pill">Cumple de Raúl · 15 nov</span>'+
+    '<h1>¿Qué tanto conoces a Raúl?</h1>'+
+    '<p class="muted" style="margin:18px 0 0;font-size:17px;line-height:1.45">12 preguntas. 3 minutos. El que más sepa gana.</p>'+
+    '<div class="bottom"><label for="nombre" class="muted" style="font-size:13px">Tu nombre</label>'+
+    '<input id="nombre" type="text" maxlength="40" autocomplete="given-name" placeholder="Escribe tu nombre" value="'+esc(S.name)+'">'+
+    '<button class="btn '+(S.name.trim()?'btn-main':'btn-off')+'" id="go">Empezar</button></div></section>';
+  }
+  else if(S.step==='mc'){
+    var q=QUESTIONS[S.qi], ans=S.picked!==null, qn=S.qi+1, pct=Math.round((qn-1)/TOTAL*100);
+    var votes=null,sum=0;
+    if(q.poll&&ans){ votes=[0,0,0,0]; (S.rows||[]).forEach(function(r){ if(r.voto_personaje>=0&&r.voto_personaje<4) votes[r.voto_personaje]++; }); votes[S.picked]++; sum=votes.reduce(function(a,b){return a+b;},0); }
+    h+='<section class="screen"><div class="top"><span>Pregunta '+qn+' de '+TOTAL+'</span><span>'+(q.poll?'Encuesta':S.score+' aciertos')+'</span></div>'+
+    '<div class="bar"><div style="width:'+pct+'%"></div></div><h2>'+esc(q.text)+'</h2><div class="opts">';
+    q.opts.forEach(function(o,i){
+      var cls='opt',col='#fff',fill='',pc='';
+      if(ans&&q.poll){ var p=Math.round(votes[i]/sum*100); pc='<span class="pc">'+p+'%</span>'; fill='<span class="fill" data-w="'+p+'%" style="background:'+(i===S.picked?'rgba(212,255,63,.28)':'rgba(255,255,255,.1)')+'"></span>'; if(i===S.picked) cls+=' mine'; }
+      else if(ans){ if(i===q.a){cls+=' ok';col='#000';} else if(i===S.picked){cls+=' bad';} else {cls+=' dim';col='rgba(255,255,255,.45)';} }
+      h+='<button class="'+cls+'" data-i="'+i+'">'+fill+'<span class="ic">'+icon(o[1],col)+'</span><span class="lb">'+esc(o[0])+'</span>'+pc+'</button>';
+    });
+    h+='</div>';
+    if(ans){
+      var big,small;
+      if(q.poll){ big='Así va la votación.'; small=sum+(sum===1?' voto':' votos')+' · esta no cuenta para tu calificación'; }
+      else { big=q.opts[S.picked][2]; small=S.picked===q.a?'+1 acierto':'La correcta: '+q.opts[q.a][0]; }
+      h+='<div class="react"><p class="big">'+esc(big)+'</p><p class="small">'+esc(small)+'</p></div>';
+    }
+    h+='<div class="bottom"><button class="btn '+(ans?'btn-light':'btn-off')+'" id="next">Siguiente</button></div></section>';
+  }
+  else if(S.step==='open'){
+    var oq=OPEN[S.oi], qn2=QUESTIONS.length+1+S.oi, pct2=Math.round((qn2-1)/TOTAL*100);
+    h+='<section class="screen"><div class="top"><span>Pregunta '+qn2+' de '+TOTAL+'</span><span>Abierta</span></div>'+
+    '<div class="bar"><div style="width:'+pct2+'%"></div></div><h2 style="margin-top:44px">'+esc(oq.text)+'</h2>'+
+    '<p class="muted" style="margin:12px 0 0;font-size:15px">'+esc(oq.hint)+'</p>'+
+    '<label for="abierta" class="sr">'+esc(oq.text)+'</label><textarea id="abierta" maxlength="'+(S.oi===0?500:200)+'" placeholder="Escribe aquí…">'+esc(S.open[S.oi])+'</textarea>'+
+    '<div class="bottom"><button class="btn btn-main" id="nextOpen">'+esc(oq.cta)+'</button></div></section>';
+  }
+  else if(S.step==='result'){
+    var sc=S.score, tier='Conocido de Instagram', line='Te falta convivir más con Raúl.';
+    if(sc>=7){tier='Nivel hermano';line='Conoces a Raúl mejor que su mamá.';}
+    else if(sc>=4){tier='Compa de confianza';line='Vas bien. Te faltaron unos detalles.';}
+    var status = S.saved ? 'Tus respuestas ya le llegaron a Raúl.' : (S.sending ? 'Enviando tus respuestas…' : 'Tus respuestas le llegan a Raúl.');
+    h+='<section class="screen"><span class="muted" style="font-size:15px">'+esc(S.name||'Oye')+', sacaste</span>'+
+    '<div class="score"><span class="n">'+sc+'</span><span class="d">/'+MC_TOTAL+'</span></div>'+
+    '<h2 style="margin-top:18px;color:#D4FF3F">'+tier+'</h2><p class="muted" style="margin:8px 0 0;font-size:15px">'+line+'</p>'+
+    '<div class="card" style="padding:18px"><p style="margin:0;font-size:15px;line-height:1.45">El ranking es secreto. Raúl lo revela en su cumple.</p><p class="muted" style="margin:6px 0 0;font-size:13px">'+status+'</p>';
+    h+='</div><div class="bottom"><div class="grid2"><button class="btn btn-main" id="share">Retar a un amigo</button><button class="btn btn-ghost" id="again">Otra vez</button></div></div></section>';
+  }
+  app.innerHTML=h;
+  bind();
+  requestAnimationFrame(function(){ requestAnimationFrame(function(){ app.querySelectorAll('.fill').forEach(function(f){ f.style.width=f.getAttribute('data-w'); }); }); });
+}
+
+function bind(){
+  var n=document.getElementById('nombre');
+  if(n){ n.addEventListener('input',function(e){ var had=!!S.name.trim(); S.name=e.target.value; if(had!==!!S.name.trim()){ var b=document.getElementById('go'); b.className='btn '+(S.name.trim()?'btn-main':'btn-off'); } });
+    n.addEventListener('keydown',function(e){ if(e.key==='Enter') start(); }); }
+  var go=document.getElementById('go'); if(go) go.onclick=start;
+  app.querySelectorAll('.opt').forEach(function(b){ b.onclick=function(){
+    if(S.picked!==null) return;
+    var i=+b.getAttribute('data-i'), q=QUESTIONS[S.qi];
+    S.picked=i; S.answers[S.qi]=i; if(!q.poll&&i===q.a) S.score++;
+    if(navigator.vibrate) navigator.vibrate(i===q.a||q.poll?20:[30,40,30]);
+    render();
+  };});
+  var nx=document.getElementById('next'); if(nx) nx.onclick=function(){
+    if(S.picked===null) return;
+    S.picked=null;
+    if(S.qi<QUESTIONS.length-1) S.qi++; else S.step='open';
+    render(); window.scrollTo(0,0);
+  };
+  var ta=document.getElementById('abierta'); if(ta){ ta.addEventListener('input',function(e){ S.open[S.oi]=e.target.value; }); }
+  var no=document.getElementById('nextOpen'); if(no) no.onclick=function(){
+    if(S.oi<OPEN.length-1){ S.oi++; render(); }
+    else { S.step='result'; render(); save().then(render); }
+    window.scrollTo(0,0);
+  };
+  var sh=document.getElementById('share'); if(sh) sh.onclick=function(){
+    var txt='Saqué '+S.score+'/'+MC_TOTAL+' en "¿Qué tanto conoces a Raúl?". A ver si me ganas: '+location.href;
+    if(navigator.share){ navigator.share({title:'¿Qué tanto conoces a Raúl?',text:txt}).catch(function(){}); }
+    else { window.open('https://wa.me/?text='+encodeURIComponent(txt),'_blank'); }
+  };
+  var ag=document.getElementById('again'); if(ag) ag.onclick=function(){
+    S.step='intro'; S.qi=0; S.picked=null; S.score=0; S.answers=[]; S.oi=0; S.open=['','']; render();
+  };
+}
+function start(){ if(!S.name.trim()){ document.getElementById('nombre').focus(); return; } S.step='mc'; render(); }
+
+loadRows().then(render);
+render();
+</script>
+</body>
+</html>
